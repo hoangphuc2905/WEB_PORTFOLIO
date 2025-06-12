@@ -19,10 +19,10 @@ $(document).ready(function () {
 document.addEventListener("visibilitychange", function () {
   if (document.visibilityState === "visible") {
     document.title = "Projects | Portfolio Huynh Hoang Phuc";
-    $("#favicon").attr("href", "/assets/images/favicon.png");
+    $("#favicon").attr("href", "/assets/images/Anh3x4.jpg");
   } else {
     document.title = "Come Back To Portfolio";
-    $("#favicon").attr("href", "/assets/images/favhand.png");
+    $("#favicon").attr("href", "/assets/images/Anh3x4.jpg");
   }
 });
 
@@ -81,6 +81,7 @@ function showProjects(projects) {
   var $grid = $(".box-container").isotope({
     itemSelector: ".grid-item",
     layoutMode: "fitRows",
+    filter: "*",
     masonry: {
       columnWidth: 200,
     },
@@ -97,7 +98,23 @@ function showProjects(projects) {
 
 getProjects().then((data) => {
   showProjects(data);
+
+  // Delay để đảm bảo DOM đã được cập nhật đầy đủ
+  setTimeout(() => {
+    var $grid = $(".box-container").isotope({
+      itemSelector: ".grid-item",
+      layoutMode: "fitRows",
+    });
+
+    $(".button-group").on("click", "button", function () {
+      $(".button-group").find(".is-checked").removeClass("is-checked");
+      $(this).addClass("is-checked");
+      var filterValue = $(this).attr("data-filter");
+      $grid.isotope({ filter: filterValue });
+    });
+  }, 100); // Delay 100ms là đủ
 });
+
 // fetch projects end
 
 // Start of Tawk.to Live Chat
