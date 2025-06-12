@@ -65,10 +65,10 @@ $(document).ready(function () {
 document.addEventListener("visibilitychange", function () {
   if (document.visibilityState === "visible") {
     document.title = "Portfolio | Huynh Hoang Phuc";
-    $("#favicon").attr("href", "assets/images/favicon.png");
+    $("#favicon").attr("href", "assets/images/Anh3x4.jpg");
   } else {
     document.title = "Come Back To Portfolio";
-    $("#favicon").attr("href", "assets/images/favhand.png");
+    $("#favicon").attr("href", "assets/images/Anh3x4.jpg");
   }
 });
 
